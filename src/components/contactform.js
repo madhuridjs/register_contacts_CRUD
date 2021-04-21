@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-const Contactform = () => {
+const Contactform = (props) => {
     const initialFieldValues={
         fullName: '',
-        moile: '',
+        mobile: '',
         email: '',
         address: ''
     }
@@ -16,39 +16,43 @@ const Contactform = () => {
            [name]: value
         })
     }
+
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        props.addOrEdit(values);
+    }
     
     return(
-        <form autoComplete= 'off'>
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
+        <form autoComplete= 'off' onSubmit= {handleFormSubmit}>
+            <div className="form-group input-group">
+                <div className="input-group-prepend">
                     <div className="input-group-text">
                         <i className= "fas fa-user"></i>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Full Name"
-                    name="fullname" value={values.fullName} onChange={inputChangeHandler}
-
+                <input className="form-control" placeholder="Full Name"
+                    name="fullName" value={values.fullName} onChange={inputChangeHandler}
                 />
             </div>
             <div className= "form-row">
-                <div class="form-group input-group col-md-6">
-                    <div class="input-group-prepend">
+                <div className="form-group input-group col-md-6">
+                    <div className="input-group-prepend">
                         <div className="input-group-text">
                             <i className= "fas fa-mobile-alt"></i>
                         </div>
                     </div>
-                    <input type="text" class="form-control" placeholder="MobileNumber" 
-                        name="fullname" value={values.mobile} onChange={inputChangeHandler}
+                    <input type="text" className="form-control" placeholder="MobileNumber" 
+                        name="mobile" value={values.mobile} onChange={inputChangeHandler}
                     />
                 </div>
-                <div class="form-group input-group col-md-6">
-                    <div class="input-group-prepend">
+                <div className="form-group input-group col-md-6">
+                    <div className="input-group-prepend">
                         <div className="input-group-text">
                             <i className= "fas fa-envelope"></i>
                         </div>
                     </div>
-                    <input type="text" class="form-control" placeholder="email" 
-                        name="fullname" value={values.email} onChange={inputChangeHandler}
+                    <input type="text" className="form-control" placeholder="email" 
+                        name="email" value={values.email} onChange={inputChangeHandler}
                     />
                 </div>
             </div>
