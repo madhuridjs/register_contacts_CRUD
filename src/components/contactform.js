@@ -8,6 +8,14 @@ const Contactform = () => {
         address: ''
     }
     const [values, setValues] = useState(initialFieldValues);
+
+    const inputChangeHandler = (event) => {
+        var { name, value } = event.target
+        setValues({
+           ...values,
+           [name]: value
+        })
+    }
     
     return(
         <form autoComplete= 'off'>
@@ -18,7 +26,7 @@ const Contactform = () => {
                     </div>
                 </div>
                 <input type="text" class="form-control" placeholder="Full Name"
-                    name="fullname" value={values.fullName}
+                    name="fullname" value={values.fullName} onChange={inputChangeHandler}
 
                 />
             </div>
@@ -30,7 +38,7 @@ const Contactform = () => {
                         </div>
                     </div>
                     <input type="text" class="form-control" placeholder="MobileNumber" 
-                        name="fullname" value={values.mobile}
+                        name="fullname" value={values.mobile} onChange={inputChangeHandler}
                     />
                 </div>
                 <div class="form-group input-group col-md-6">
@@ -40,9 +48,16 @@ const Contactform = () => {
                         </div>
                     </div>
                     <input type="text" class="form-control" placeholder="email" 
-                        name="fullname" value={values.email}
+                        name="fullname" value={values.email} onChange={inputChangeHandler}
                     />
                 </div>
+            </div>
+            <div className= "form-group">
+                <textarea className= "form-control" placeholder="address" name="address"
+                    value={values.address} onChange= {inputChangeHandler} />
+            </div>
+            <div className= "form-group">
+                <input type= "submit" value= "Save" className= "btn btn-primary btn-block" />
             </div>
         </form>
     );
